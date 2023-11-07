@@ -16,6 +16,6 @@ resource "aws_instance" "ec2_instance" {
   iam_instance_profile = aws_iam_instance_profile.v1-attack-path-rds-instance-profile.name
 
   tags = {
-    Name = "v1-attack-path-ec2-${random_string.random.id}"
+    Name = "${var.prefix}-ec2-${random_string.random.id}"
   }
 }

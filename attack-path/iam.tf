@@ -1,5 +1,5 @@
 resource "aws_iam_role" "v1-attack-path-rds-access-role" {
-  name = "v1-attack-path-ec2-role-${random_string.random.id}"
+  name = "${var.prefix}-ec2-role-${random_string.random.id}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -17,12 +17,12 @@ resource "aws_iam_role" "v1-attack-path-rds-access-role" {
 EOF
 
   tags = {
-    Name = "v1-attack-path-ec2-role-${random_string.random.id}"
+    Name = "${var.prefix}-ec2-role-${random_string.random.id}"
   }
 }
 
 resource "aws_iam_policy" "v1-attack-path-rds-access-policy" {
-  name        = "v1-attack-path-ec2-policy-${random_string.random.id}"
+  name        = "${var.prefix}-ec2-policy-${random_string.random.id}"
   description = "Policy for accessing RDS"
   policy      = <<EOF
 {
@@ -38,7 +38,7 @@ resource "aws_iam_policy" "v1-attack-path-rds-access-policy" {
 EOF
 
   tags = {
-    Name = "v1-attack-path-ec2-policy-${random_string.random.id}"
+    Name = "${var.prefix}-ec2-policy-${random_string.random.id}"
   }
 }
 

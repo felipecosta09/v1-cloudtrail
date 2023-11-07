@@ -1,5 +1,5 @@
 resource "aws_security_group" "v1-attack-path-rds-sg" {
-  name        = "v1-attack-path-rds-sg-${random_string.random.id}"
+  name        = "${var.prefix}-rds-sg-${random_string.random.id}"
   description = "Security group for RDS instance"
 
   ingress {
@@ -9,12 +9,12 @@ resource "aws_security_group" "v1-attack-path-rds-sg" {
     cidr_blocks = ["0.0.0.0/0"]  # Open to all, you may restrict it to specific IP ranges
   }
   tags = {
-    Name = "v1-attack-path-rds-sg-${random_string.random.id}"
+    Name = "${var.prefix}-rds-sg-${random_string.random.id}"
   }
 }
 
 resource "aws_security_group" "v1-attack-path-ec2-sg" {
-  name        = "v1-attack-path-ec2-sg-${random_string.random.id}"
+  name        = "${var.prefix}-ec2-sg-${random_string.random.id}"
   description = "Security group for EC2 instance"
 
   ingress {
@@ -31,6 +31,6 @@ resource "aws_security_group" "v1-attack-path-ec2-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "v1-attack-path-ec2-sg-${random_string.random.id}"
+    Name = "${var.prefix}-ec2-sg-${random_string.random.id}"
   }
 }
