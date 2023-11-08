@@ -18,6 +18,8 @@ EOF
 
   tags = {
     Name = "${var.prefix}-ec2-role-${random_string.random.id}"
+    Environment = var.environment
+    CostCenter = var.cost-center
   }
 }
 
@@ -39,6 +41,8 @@ EOF
 
   tags = {
     Name = "${var.prefix}-ec2-policy-${random_string.random.id}"
+    Environment = var.environment
+    CostCenter = var.cost-center
   }
 }
 

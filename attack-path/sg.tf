@@ -10,6 +10,8 @@ resource "aws_security_group" "v1-attack-path-rds-sg" {
   }
   tags = {
     Name = "${var.prefix}-rds-sg-${random_string.random.id}"
+    Environment = var.environment
+    CostCenter = var.cost-center
   }
 }
 
@@ -32,5 +34,7 @@ resource "aws_security_group" "v1-attack-path-ec2-sg" {
   }
   tags = {
     Name = "${var.prefix}-ec2-sg-${random_string.random.id}"
+    Environment = var.environment
+    CostCenter = var.cost-center
   }
 }

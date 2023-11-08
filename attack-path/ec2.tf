@@ -17,5 +17,7 @@ resource "aws_instance" "ec2_instance" {
 
   tags = {
     Name = "${var.prefix}-ec2-${random_string.random.id}"
+    Environment = var.environment
+    CostCenter = var.cost-center
   }
 }

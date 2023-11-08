@@ -16,3 +16,15 @@ variable "key-pair" {
   type        = string
   default     = "felipe"
 }
+
+variable "environment" {
+  description = "Environment"
+  type        = string
+  default     = "production"
+}
+
+variable "cost-center" {
+  description = "Cost center"
+  type        = string
+  default     = "adm-logistics"
+}

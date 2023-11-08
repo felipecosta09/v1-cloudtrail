@@ -14,5 +14,7 @@ resource "aws_db_instance" "v1-attack-path-rds" {
   vpc_security_group_ids = [aws_security_group.v1-attack-path-rds-sg.id]
   tags = {
     Name = "${var.prefix}-rds-${random_string.random.id}"
+    Environment = var.environment
+    CostCenter = var.cost-center
   }
 }
