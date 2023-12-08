@@ -1,0 +1,22 @@
+resource "aws_iam_role" "lambda_role" {
+  name = "${var.prefix}-lambda-role-${random_string.suffix.result}"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+tags = {
+    Name = "${var.prefix}-lambda-role-${random_string.suffix.result}"
+  }
+}

@@ -9,7 +9,7 @@ attach = iam.attach_user_policy(UserName='poc',PolicyArn='arn:aws:iam::aws:polic
 
 print(attach)
 
-time.sleep(60)
+time.sleep(10)
 
 # Detach policy from a user
 detach = iam.detach_user_policy(UserName='poc',PolicyArn='arn:aws:iam::aws:policy/AmazonS3FullAccess')
