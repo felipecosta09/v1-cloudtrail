@@ -1,4 +1,4 @@
-name: 'Deploy api-visibility'
+name: 'Deploy attack-path'
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   
 jobs:
   terraform:
-    name: 'api-visibility'
+    name: 'attack-path'
     runs-on: ubuntu-latest
     environment: production
 
@@ -34,11 +34,11 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform -chdir=api-visibility init
+      run: terraform -chdir=attack-path init
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform -chdir=api-visibility plan
+      run: terraform -chdir=attack-path plan
 
     - name: Terraform Apply       
-      run: terraform -chdir=api-visibility apply -auto-approve
+      run: terraform -chdir=attack-path apply -auto-approve
