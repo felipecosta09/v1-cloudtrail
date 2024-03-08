@@ -11,7 +11,7 @@ terraform {
   }
   required_version = ">= 0.15.0"
     backend "s3" {
-    bucket = "felipe-state-files"
+    bucket = "felipec-state-files"
     key    = "v1-cloudtrail/attack-path/terraform.tfstate"
     region = "us-east-1"
     }
