@@ -35,6 +35,8 @@ SECRET_ACCESS_KEY=$(echo "$output" | jq -r '.AccessKey.SecretAccessKey')
 aws configure set aws_access_key_id "$ACCESS_KEY_ID"
 aws configure set aws_secret_access_key "$SECRET_ACCESS_KEY"
 
+echo $ACCESS_KEY_ID
+
 # List EC2
 aws ec2 describe-instances
 
