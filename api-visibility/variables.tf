@@ -18,7 +18,7 @@ variable "environment" {
 }
 
 variable "cost-center" {
-  description = "Cost center"
+  description = "Cost Center"
   type        = string
   default     = "adm-logistics"
 }
