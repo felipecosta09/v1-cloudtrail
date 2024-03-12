@@ -29,7 +29,7 @@ jobs:
         aws-region: us-east-1
 
     # Run the attack script
-    - name: Setup Terraform
+    - name: Run Attack
       run: |
           cd cloudtrail
           chmod +x attack.sh
