@@ -24,6 +24,17 @@ else
   exit 1
 fi
 
+# Create access key for the IAM user and capture the output
+output=$(aws iam create-access-key --user-name "$user_name")
+
+# Extract Access Key ID and Secret Access Key from the output using jq (JSON processor)
+ACCESS_KEY_ID=$(echo "$output" | jq -r '.AccessKey.AccessKeyId')
+SECRET_ACCESS_KEY=$(echo "$output" | jq -r '.AccessKey.SecretAccessKey')
+
+# Change the AWS CLI profile to the newly created user
+aws configure set aws_access_key_id "$ACCESS_KEY_ID"
+aws configure set aws_secret_access_key "$SECRET_ACCESS_KEY"
+
 # List S3 buckets
 echo "Listing S3 buckets..."
 buckets=$(aws s3 ls | awk '{print $3}')
@@ -75,3 +86,6 @@ else
   echo "Error deleting user."
   exit 1
 fi
+
+# Delete access key for the IAM user
+aws iam delete-access-key --user-name "$user_name" --access-key-id "$ACCESS_KEY_ID"
