@@ -10,11 +10,16 @@ UNIQUE_ID=$(date +%s)
 # Append the unique identifier to the base name
 SG_NAME="$SG_BASE_NAME-$UNIQUE_ID"
 
-# Step 1: Create the security group
+# Step 1: Create the security group and open uncommon ports
 echo "Creating security group..."
 if aws ec2 create-security-group \
-  --group-name "$SG_NAME" \
-  --description "$SG_DESCRIPTION" > /dev/null 2>&1; then
+   --group-name "$SG_NAME" \
+   --description "$SG_DESCRIPTION" > /dev/null 2>&1; then \
+   aws ec2 authorize-security-group-ingress \
+   --group-name "$SG_NAME" \
+   --protocol tcp \
+   --port 5936 \
+   --cidr 0.0.0.0/0 > /dev/null 2>&1;
   echo "Security group created successfully: $SG_NAME"
 else
   echo "Error creating security group."
