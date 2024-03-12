@@ -36,7 +36,7 @@ SECRET_ACCESS_KEY=$(echo "$output" | jq -r '.AccessKey.SecretAccessKey')
 aws configure set aws_access_key_id "$ACCESS_KEY_ID" --profile attacker
 aws configure set aws_secret_access_key "$SECRET_ACCESS_KEY" --profile attacker
 
-echo $ACCESS_KEY_ID
+aws configure set profile attacker
 
 # List EC2
 aws ec2 describe-instances --profile attacker
