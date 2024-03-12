@@ -2,3 +2,4 @@ attack-path/.terraform*
 api-visibility/.terraform*
 *.DS_Store*
 api-visibility/zip/lambda.zip
+cloudtrail/downloads/passwords.zip
