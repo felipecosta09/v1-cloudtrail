@@ -78,6 +78,9 @@ else
   exit 1
 fi
 
+# Delete access key for the IAM user
+aws iam delete-access-key --user-name "$user_name" --access-key-id "$ACCESS_KEY_ID"
+
 # Delete a user
 echo "Deleting user $user_name..."
 if aws iam delete-user --user-name $user_name > /dev/null 2>&1; then
@@ -86,6 +89,3 @@ else
   echo "Error deleting user."
   exit 1
 fi
-
-# Delete access key for the IAM user
-aws iam delete-access-key --user-name "$user_name" --access-key-id "$ACCESS_KEY_ID"
