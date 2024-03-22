@@ -5,7 +5,7 @@ resource "aws_db_instance" "v1-attack-path-rds" {
   engine              = "mysql"
   engine_version      = "5.7"
   identifier          = "${var.prefix}-rds-${random_string.random.id}"
-  instance_class      = "db.t2.micro"
+  instance_class      = "db.t3.micro"
   username            = "admin"
   password            = "${random_string.random.id}"
   parameter_group_name = "default.mysql5.7"
