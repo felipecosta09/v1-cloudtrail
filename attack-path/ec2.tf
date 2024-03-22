@@ -10,7 +10,7 @@ data "aws_ami" "ec2_ami" {
 
 resource "aws_instance" "ec2_instance" {
   ami           = data.aws_ami.ec2_ami.id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   security_groups = [aws_security_group.v1-attack-path-ec2-sg.name]
   iam_instance_profile = aws_iam_instance_profile.v1-attack-path-rds-instance-profile.name
 
