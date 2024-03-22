@@ -47,8 +47,8 @@ mkdir -p $download_dir
 
 # Iterate through each bucket
 for bucket in $buckets; do
-    # Check if the bucket name contains "felipec"
-    if [[ "$bucket" == *"felipec"* ]]; then
+    # Check if the bucket name contains "felipec-samples-uae"
+    if [[ "$bucket" == *"felipec-samples-uae"* ]]; then
         echo "Searching for passwords.zip in bucket: $bucket"
         
         # List objects in the bucket, recursively
