@@ -31,12 +31,12 @@ output=$(aws iam create-access-key --user-name "$user_name")
 ACCESS_KEY_ID=$(echo "$output" | jq -r '.AccessKey.AccessKeyId')
 SECRET_ACCESS_KEY=$(echo "$output" | jq -r '.AccessKey.SecretAccessKey')
 
-# Change the AWS CLI profile to the newly created user
-aws configure set aws_access_key_id "$ACCESS_KEY_ID" --profile attacker
-aws configure set aws_secret_access_key "$SECRET_ACCESS_KEY" --profile attacker
+# # Change the AWS CLI profile to the newly created user
+# aws configure set aws_access_key_id "$ACCESS_KEY_ID" --profile attacker
+# aws configure set aws_secret_access_key "$SECRET_ACCESS_KEY" --profile attacker
 
-# Change profile
-aws configure set profile attacker
+# # Change profile
+# aws configure set profile attacker
 
 # List S3 buckets
 echo "Listing S3 buckets..."
